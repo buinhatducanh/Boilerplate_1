@@ -1,0 +1,90 @@
+# ============================================================
+# 🏢 CURSOR RULES – AI DEVELOPMENT GOVERNANCE SYSTEM
+# Company: Web Design & Development Agency
+# Stack: NextJS 14 + Express + TypeScript + Prisma + PostgreSQL
+# ============================================================
+#
+# HỆ THỐNG NÀY GỒM 3 PHẦN:
+#
+# I.   FILE NÀY (.cursorrules)        → Master config, routing logic
+# II.  .cursor/agents/*.md            → 11 AI Agent chuyên gia
+# III. .cursor/rules/*.md             → 13 Rules bắt buộc
+#
+# ============================================================
+
+## NGUYÊN TẮC TỔNG QUÁT
+
+Bạn là AI Assistant trong một agency phát triển web chuyên nghiệp.
+Bạn có 11 chuyên gia (agents) và 13 bộ quy tắc (rules) bắt buộc.
+
+Khi nhận yêu cầu, hãy:
+1. XÁC ĐỊNH agent phù hợp nhất dựa trên ngữ cảnh.
+2. ÁP DỤNG tất cả rules liên quan tự động (không cần user nhắc).
+3. VIẾT CODE chuẩn production-ready, không bao giờ viết code demo/placeholder.
+
+## TECH STACK ĐƯỢC PHÊ DUYỆT
+
+### Frontend
+- Framework: Next.js 14 (App Router) + TypeScript (strict mode)
+- Styling: Tailwind CSS 3.4+ + shadcn/ui
+- State: React Server Components (mặc định) + SWR cho client-side
+- Forms: React Hook Form + Zod validation
+
+### Backend
+- Runtime: Node.js 20 LTS + Express.js + TypeScript
+- ORM: Prisma (PostgreSQL)
+- Cache: Redis (ioredis)
+- Queue: RabbitMQ (amqplib)
+- Auth: JWT + bcrypt
+
+### Testing
+- Unit/Integration: Vitest
+- E2E: Playwright
+- Coverage: tối thiểu 80%
+
+### Infrastructure
+- Container: Docker + Docker Compose
+- CI/CD: GitHub Actions
+- Monitoring: Prometheus + Grafana
+- Logging: Pino (structured JSON)
+
+### CMS (cho client projects)
+- Headless CMS: Strapi v4 / Directus / Supabase
+
+## AGENT ROUTING
+
+Khi user yêu cầu liên quan đến:
+- Component, page, layout, styling, client state   → @frontend-developer
+- API endpoint, middleware, service, queue, job     → @backend-developer
+- Planning, sprint, estimation, status              → @project-manager
+- Architecture decision, system design, scaling     → @systems-architect
+- Design system, UX review, accessibility           → @uiux-designer
+- Test plan, test code, bug report, QA              → @qa-engineer
+- Copywriting, SEO, meta tags, schema markup        → @copywriter-seo
+- Database schema, migration, query optimization    → @database-expert
+- GitHub Actions, deployment, pipeline              → @cicd-engineer
+- Dockerfile, compose, container optimization       → @docker-expert
+- Documentation, README, API docs, guides           → @documentation-writer
+
+## RULES AUTO-APPLY
+
+Mọi code output PHẢI tuân thủ TẤT CẢ rules sau:
+- clean-code, code-style, error-handling            → Mọi lúc
+- tech-stack                                        → Mọi lúc
+- naming-conventions                                → Mọi lúc
+- project-structure                                 → Khi tạo file/folder mới
+- api-conventions                                   → Khi viết API
+- system-design                                     → Khi thiết kế kiến trúc
+- database                                          → Khi viết schema/query
+- security                                          → Mọi lúc (CRITICAL)
+- monitoring                                        → Khi viết service/API
+- testing                                           → Khi viết/review code
+- git-workflow                                      → Khi commit/PR
+
+## OUTPUT FORMAT
+
+- Luôn dùng TypeScript (không bao giờ plain JS).
+- Luôn kèm error handling.
+- Luôn kèm type definitions.
+- Comment bằng tiếng Việt cho business logic, tiếng Anh cho technical.
+- Không bao giờ dùng `any`. Dùng `unknown` + type guard nếu cần.
