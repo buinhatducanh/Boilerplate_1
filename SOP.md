@@ -360,47 +360,79 @@ Trả về 2 file hoàn chỉnh, copy-paste được ngay:
 ┌─────────────────────────────────────────────────────────────────┐
 │                    WORKFLOW TỔNG QUAN                           │
 │                                                                 │
-│  ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐  │
-│  │ PHASE 1  │───▶│ PHASE 2  │───▶│ PHASE 3  │───▶│ PHASE 4  │  │
-│  │ Design   │    │ UI Code  │    │ CMS Setup│    │ Mapping  │  │
-│  └──────────┘    └──────────┘    └──────────┘    └──────────┘  │
-│   Figma          Components      Strapi/CMS     Hook + Smart   │
-│   Handoff        + Mock + Type   + Content       Components    │
-│                                                                 │
-│   [Designer]     [UI Dev]        [Dev/DevOps]   [Dev + AI]     │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐ │
+│  │ PHASE 1  │─▶│ PHASE 2  │─▶│ PHASE 3  │─▶│ PHASE 4  │─▶│ PHASE 5  │ │
+│  │ Design   │  │ Assembly │  │ CMS Setup│  │ Mapping  │  │ Polish   │ │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘  └──────────┘ │
+│   Figma         Blocks →       Strapi/CMS    Hook + Smart  SEO, Test,  │
+│   Handoff       Pages          + Content     Components    Deploy      │
+│                                                                        │
+│   [Designer]   [Dev + AI]     [Dev/DevOps]   [Dev + AI]    [QA + Dev]  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ### Phase 1 – Design Handoff (Designer)
-- Export Figma → React components (dùng Locofy, Anima, hoặc thủ công).
-- Output: File `.tsx` thuần UI.
+- Export Figma → xác định loại trang (Landing, Corporate, Service Detail...).
+- Output: Figma file hoặc screenshots các sections.
 
-### Phase 2 – UI Standardization (UI Dev)
-- Đặt component vào `src/components/ui/`.
-- Tạo TypeScript Interface tại `src/types/`.
-- Tạo Mock Data tại `src/mocks/`.
-- **Kiểm tra**: Component render đúng với mock data.
+### Phase 2 – Block Assembly (Dev + AI) ⚡ MỚI
+> **Đây là bước tối ưu hóa lớn nhất.** Thay vì code từ đầu, dùng 14 blocks có sẵn.
+
+1. Nhận diện loại trang → chọn recipe từ `src/components/patterns/page-recipes.ts`
+2. Map từng section Figma → block tương ứng (xem bảng trong [ASSEMBLY-GUIDE.md](./ASSEMBLY-GUIDE.md))
+3. Import blocks, thay data từ Figma vào props
+4. Chạy `validatePageBlocks()` để kiểm tra rules
+5. **Thời gian**: 15-30 phút/trang thay vì 4-8 giờ
+
+```tsx
+// Ví dụ: Landing page lắp ráp trong 20 phút
+import { HeroCentered, FeaturesGrid, StatsBar, CtaBanner } from "@/components/blocks";
+
+export default function LandingPage() {
+  return (
+    <>
+      <HeroCentered title="..." primaryCta={{ text: "...", href: "..." }} />
+      <FeaturesGrid title="..." features={[...]} />
+      <StatsBar stats={[...]} />
+      <CtaBanner title="..." primaryCta={{ text: "...", href: "..." }} />
+    </>
+  );
+}
+```
+
+Nếu Figma có section custom không khớp block nào → tạo UI component mới:
+- Đặt vào `src/components/ui/`
+- Tạo TypeScript Interface tại `src/types/`
+- Tạo Mock Data tại `src/mocks/`
 
 ### Phase 3 – CMS Setup (Dev/DevOps) — Chạy song song với Phase 2
 - Tạo Collection Types trên Strapi theo schema trong `src/cms-schemas/`.
 - Nhập content mẫu.
 - Verify API response đúng format chuẩn.
 
-### Phase 4 – AI-Assisted Mapping (Dev + AI)
+### Phase 4 – API Mapping (Dev + AI)
 1. Mở Cursor/Copilot.
 2. Paste **Prompt 1** → sinh Interface (nếu chưa có).
 3. Paste **Prompt 2** → sinh Hook + Smart Component.
 4. Review code, test, merge.
 
-### Checklist bàn giao mỗi Component
+### Phase 5 – Polish & Deploy (QA + Dev)
+- SEO: Metadata, JSON-LD schema (`src/components/seo/`)
+- Testing: Unit + E2E tests
+- Accessibility: WCAG 2.1 AA checklist
+- Performance: Lighthouse audit
+- Deploy: Docker build → staging → production
 
-- [ ] File UI Component tại `src/components/ui/`
-- [ ] TypeScript Interface tại `src/types/`
-- [ ] Mock Data tại `src/mocks/` (ít nhất 2 items)
-- [ ] Component render đúng với mock data
-- [ ] Custom Hook tại `src/hooks/`
-- [ ] Smart Component tại `src/components/smart/`
+### Checklist bàn giao mỗi Trang
+
+- [ ] Trang lắp ráp từ blocks (hoặc custom components)
+- [ ] `validatePageBlocks()` trả valid
+- [ ] TypeScript Interfaces cho custom data
+- [ ] Mock Data cho development
+- [ ] Custom Hooks kết nối API (khi CMS sẵn sàng)
+- [ ] SEO metadata + JSON-LD schema
 - [ ] Test toggle `USE_MOCK=true` / `USE_MOCK=false`
+- [ ] Responsive trên mobile/tablet/desktop
 
 ---
 

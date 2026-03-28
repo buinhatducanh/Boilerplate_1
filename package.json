@@ -52,5 +52,8 @@
     "@testing-library/jest-dom": "^6.4.0",
     "@playwright/test": "^1.45.0",
     "pino-pretty": "^11.2.0"
+  },
+  "prisma": {
+    "seed": "npx tsx prisma/seed.ts"
   }
 }

@@ -65,6 +65,7 @@ Khi user yêu cầu liên quan đến:
 - GitHub Actions, deployment, pipeline              → @cicd-engineer
 - Dockerfile, compose, container optimization       → @docker-expert
 - Documentation, README, API docs, guides           → @documentation-writer
+- Lắp ráp trang mới từ Figma, chọn blocks          → @frontend-developer (dùng Rule 14)
 
 ## RULES AUTO-APPLY
 
@@ -80,6 +81,7 @@ Mọi code output PHẢI tuân thủ TẤT CẢ rules sau:
 - monitoring                                        → Khi viết service/API
 - testing                                           → Khi viết/review code
 - git-workflow                                      → Khi commit/PR
+- assembly                                          → Khi tạo trang mới từ blocks
 
 ## OUTPUT FORMAT
 
