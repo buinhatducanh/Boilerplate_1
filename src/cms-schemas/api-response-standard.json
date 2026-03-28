@@ -1,0 +1,60 @@
+{
+  "_docs": "Chuẩn JSON Response từ Strapi v4 – để team Dev tham khảo khi mapping",
+
+  "single_item_response": {
+    "data": {
+      "id": 1,
+      "attributes": {
+        "title": "Thiết kế Website Chuyên nghiệp",
+        "subtitle": "Giải pháp số toàn diện",
+        "image": {
+          "data": {
+            "id": 10,
+            "attributes": {
+              "url": "/uploads/banner_01_abc123.jpg",
+              "width": 1920,
+              "height": 800,
+              "formats": {
+                "thumbnail": { "url": "/uploads/thumbnail_banner_01.jpg" },
+                "medium": { "url": "/uploads/medium_banner_01.jpg" },
+                "large": { "url": "/uploads/large_banner_01.jpg" }
+              }
+            }
+          }
+        },
+        "createdAt": "2024-01-15T10:30:00.000Z",
+        "updatedAt": "2024-01-16T08:00:00.000Z"
+      }
+    },
+    "meta": {}
+  },
+
+  "collection_response": {
+    "data": [
+      {
+        "id": 1,
+        "attributes": {
+          "title": "Service A",
+          "slug": "service-a",
+          "description": "Mô tả dịch vụ A"
+        }
+      },
+      {
+        "id": 2,
+        "attributes": {
+          "title": "Service B",
+          "slug": "service-b",
+          "description": "Mô tả dịch vụ B"
+        }
+      }
+    ],
+    "meta": {
+      "pagination": {
+        "page": 1,
+        "pageSize": 25,
+        "pageCount": 1,
+        "total": 2
+      }
+    }
+  }
+}
